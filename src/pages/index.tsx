@@ -93,6 +93,7 @@ export function Sign() {
     return null
 
   return <div className="grow flex flex-col">
+    <div className="h-16" />
     <div className="flex flex-col items-center">
       <h1 className="text-2xl font-bold">
         You are signing this text
@@ -128,6 +129,7 @@ export function Done() {
   const [text] = useSearchState(path, "text")
 
   return <div className="grow flex flex-col">
+    <div className="h-16" />
     <div className="flex flex-col items-center">
       <h1 className="text-2xl font-bold">
         You have signed this text
@@ -213,6 +215,7 @@ export function Check() {
     </div>
 
   return <div className="grow flex flex-col">
+    <div className="h-16" />
     <div className="flex flex-col items-center">
       <h1 className="text-2xl font-bold">
         This text has been signed
