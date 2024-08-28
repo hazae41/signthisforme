@@ -12,3 +12,13 @@ export function ShrinkableOppositeButton(props: ChildrenProps & ButtonProps) {
     </ButtonShrinkerDiv>
   </button>
 }
+
+export function ShrinkableContrastButton(props: ChildrenProps & ButtonProps) {
+  const { children, ...rest } = props
+
+  return <button className="group po-md bg-contrast rounded-xl outline-none whitespace-nowrap enabled:hover:bg-contrast-hover focus-visible:outline-contrast disabled:opacity-50 transition-opacity" {...rest}>
+    <ButtonShrinkerDiv>
+      {children}
+    </ButtonShrinkerDiv>
+  </button>
+}
