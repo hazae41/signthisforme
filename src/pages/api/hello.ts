@@ -5,5 +5,6 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<void>,
 ) {
-  res.status(200)
+  console.log(req.body)
+  res.status(200).send()
 }

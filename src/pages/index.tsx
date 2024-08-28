@@ -21,6 +21,9 @@ export function Router() {
   if (path.url.pathname === "/check")
     return <Check />
 
+  if (path.url.pathname === "/done")
+    return <Done />
+
   return <Landing />
 }
 
@@ -32,6 +35,7 @@ export function Sign() {
   const provider = useWeb3ModalProvider()
 
   const [text] = useSearchState(path, "text")
+  const [api] = useSearchState(path, "api")
 
   const [loading, setLoading] = useState(false)
 
@@ -60,7 +64,21 @@ export function Sign() {
     const signer = await new BrowserProvider(provider.walletProvider).getSigner()
     const signature = await signer.signMessage(text)
 
-    location.assign(path.go(urlOf("/check", { type: "ethereum", text, address, signature }).href))
+    if (!api) {
+      location.assign(path.go(urlOf("/check", { type: "ethereum", text, address, signature }).href))
+      return
+    }
+
+    const method = "POST"
+    const headers = { "Content-Type": "application/json" }
+    const body = JSON.stringify({ text, address, signature })
+
+    const response = await fetch(api, { method, headers, body })
+
+    if (!response.ok)
+      throw new Error("Failed to send signature")
+
+    location.assign(path.go(urlOf("/done", { type: "ethereum", text, address, signature }).href))
   }), [path, modal, account, provider])
 
   useEffect(() => {
@@ -100,6 +118,36 @@ export function Sign() {
         {loading && <MediumLoading />}
         I agree
       </ShrinkableOppositeButton>
+    </div>
+  </div>
+}
+
+export function Done() {
+  const path = usePathContext().getOrThrow()
+
+  const [text] = useSearchState(path, "text")
+
+  return <div className="grow flex flex-col">
+    <div className="flex flex-col items-center">
+      <h1 className="text-2xl font-bold">
+        You have signed this text
+      </h1>
+      <div className="h-4" />
+      <div className="size-12 bg-black dark:bg-white border-2 border-solid" style={{
+        mask: `url(/assets/arrow.png) no-repeat center / contain`,
+        WebkitMask: `url(/assets/arrow.png) no-repeat center / contain`
+      }} />
+    </div>
+    <div className="h-4" />
+    <div className="p-4 bg-contrast rounded-xl">
+      <textarea className="w-full bg-transparent outline-none"
+        value={text || ""}
+        rows={10}
+        readOnly />
+    </div>
+    <div className="h-4" />
+    <div className="text-center text-contrast">
+      (You can now close this page)
     </div>
   </div>
 }
@@ -161,7 +209,7 @@ export function Check() {
 
   if (status === "invalid")
     return <div className="">
-      Something went wrong
+      Something went wrong when verifying the signature
     </div>
 
   return <div className="grow flex flex-col">
@@ -237,10 +285,28 @@ export function Make() {
     setRawText(e.target.value)
   }, [])
 
+  const [api, setApi] = useSearchState(path, "api")
+
+  const [rawApi, setRawApi] = useState(api)
+
+  const defApi = useDeferredValue(rawApi)
+
+  useEffect(() => {
+    setApi(defApi)
+  }, [defApi])
+
+  useEffect(() => {
+    setRawApi(api)
+  }, [api])
+
+  const onRawApiChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    setRawApi(e.target.value)
+  }, [])
+
   const [copied, setCopied] = useState(false)
 
   const onCopyClick = useCallback(() => Errors.runAndLogAndAlert(async () => {
-    const url = path.go(urlOf("/sign", { type: "ethereum", text }))
+    const url = path.go(urlOf("/sign", { type: "ethereum", text, api }))
     await navigator.clipboard.writeText(url.href)
     setTimeout(() => setCopied(false), 1000)
     setCopied(true)
@@ -249,7 +315,7 @@ export function Make() {
   const onShareClick = useCallback(() => Errors.runAndLogAndAlert(async () => {
     const title = "Sign This For Me"
     const text = "Check out this text to sign"
-    const url = path.go(urlOf("/sign", { type: "ethereum", text }))
+    const url = path.go(urlOf("/sign", { type: "ethereum", text, api }))
     await navigator.share({ title, text, url: url.href })
   }), [path])
 
@@ -271,9 +337,23 @@ export function Make() {
     <div className="h-4" />
     <div className="p-4 bg-contrast rounded-xl">
       <textarea className="w-full bg-transparent outline-none"
-        rows={10}
+        onChange={onRawTextChange}
         value={rawText || ""}
-        onChange={onRawTextChange} />
+        rows={10} />
+    </div>
+    <div className="h-4" />
+    <div className="">
+      <span className="text-contrast">Optional: </span> Enter a webhook target to receive the signature
+    </div>
+    <div className="text-contrast">
+      You will receive the text, address, and signature as JSON
+    </div>
+    <div className="h-4" />
+    <div className="p-4 bg-contrast rounded-xl">
+      <input className="w-full bg-transparent outline-none"
+        placeholder="https://example.com/api/onsignature"
+        onChange={onRawApiChange}
+        value={rawApi || ""} />
     </div>
     <div className="h-4" />
     <div className="flex items-center gap-2">
@@ -300,7 +380,7 @@ export function Landing() {
       </h1>
       <div className="h-4" />
       <div className="text-center text-contrast text-2xl">
-        Meet the modern way of requesting an electronic signature
+        Meet the Ethereum way of requesting an electronic signature
       </div>
       <div className="h-8" />
       <div className="flex items-center">
