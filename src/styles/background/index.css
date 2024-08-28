@@ -1,0 +1,32 @@
+@layer utilities {
+  .bg-default {
+    @apply bg-white;
+    @apply dark:bg-black;
+  }
+
+  .bg-opposite {
+    @apply bg-black;
+    @apply dark:bg-white;
+  }
+
+  .bg-opposite-hover {
+    @apply bg-black/80;
+    @apply dark:bg-white/80;
+  }
+
+  .bg-contrast {
+    @apply bg-black/5;
+    @apply dark:bg-white/[0.075];
+  }
+
+  .bg-contrast-hover {
+    @apply bg-black/10;
+    @apply dark:bg-white/15;
+  }
+
+  .bg-backdrop {
+    @apply bg-neutral-500/50;
+    @apply dark:bg-neutral-500/50;
+  }
+
+}

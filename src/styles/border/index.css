@@ -1,0 +1,31 @@
+@layer utilities {
+  .border-default {
+    @apply border-white;
+    @apply dark:border-black;
+  }
+
+  .border-opposite {
+    @apply border-black;
+    @apply dark:border-white;
+  }
+
+  .border-double-contrast {
+    @apply border-black/[0.0005];
+    @apply dark:border-white/[0.0005];
+  }
+
+  .border-contrast {
+    @apply border-black/10;
+    @apply dark:border-white/15;
+  }
+
+  .border-b-contrast {
+    @apply border-b-black/10;
+    @apply dark:border-b-white/15;
+  }
+
+  .border-t-contrast {
+    @apply border-t-black/10;
+    @apply dark:border-t-white/15;
+  }
+}
