@@ -22,3 +22,13 @@ export function ShrinkableContrastButton(props: ChildrenProps & ButtonProps) {
     </ButtonShrinkerDiv>
   </button>
 }
+
+export function ShrinkableNakedButton(props: ChildrenProps & ButtonProps) {
+  const { children, ...rest } = props
+
+  return <button className="group po-md rounded-xl outline-none whitespace-nowrap enabled:hover:bg-contrast focus-visible:bg-contrast disabled:opacity-50 transition-opacity" {...rest}>
+    <ButtonShrinkerDiv>
+      {children}
+    </ButtonShrinkerDiv>
+  </button>
+}

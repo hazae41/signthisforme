@@ -2,7 +2,7 @@ import "@/styles/index.css";
 
 import { Errors } from "@/libs/errors";
 import { ChildrenProps } from "@/libs/react/props/children";
-import { ShrinkableOppositeButton } from "@/libs/ui/buttons";
+import { ShrinkableNakedButton } from "@/libs/ui/buttons";
 import { AppKit } from "@/mods/contexts/web3modal";
 import { HashPathProvider, usePathContext } from "@hazae41/chemin";
 import { useWeb3Modal, useWeb3ModalAccount } from "@web3modal/ethers/react";
@@ -54,9 +54,9 @@ export function Layout(props: ChildrenProps) {
         </a>
         <div className="grow" />
         {account.address != null &&
-          <ShrinkableOppositeButton onClick={onAccountClick}>
+          <ShrinkableNakedButton onClick={onAccountClick}>
             {account.address.slice(0, 6)}...{account.address.slice(-4)}
-          </ShrinkableOppositeButton>}
+          </ShrinkableNakedButton>}
       </div>
       <div className="p-4 grow w-full m-auto max-w-4xl flex flex-col">
         {children}
