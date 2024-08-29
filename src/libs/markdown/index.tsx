@@ -36,16 +36,16 @@ export function Markdown(props: { readonly text: string }) {
 
 export const components = {
   h1: function Header1(props: JSX.IntrinsicElements["h1"]) {
-    return <h1 className="text-2xl font-medium" {...props} />
+    return <h1 className="text-2xl font-medium mt-1 mb-2" {...props} />
   },
   h2: function Header2(props: JSX.IntrinsicElements["h2"]) {
-    return <h2 className="text-xl font-medium" {...props} />
+    return <h2 className="text-xl font-medium mt-1 mb-2" {...props} />
   },
   h3: function Header3(props: JSX.IntrinsicElements["h3"]) {
-    return <h3 className="text-lg font-medium" {...props} />
+    return <h3 className="text-lg font-medium mt-1 mb-2" {...props} />
   },
   h4: function Header4(props: JSX.IntrinsicElements["h4"]) {
-    return <h4 className="text-base font-medium" {...props} />
+    return <h4 className="text-base font-medium mt-1 mb-2" {...props} />
   },
   a: function Anchor(props: JSX.IntrinsicElements["a"]) {
     return <a className="text-blue-500 hover:underline"
