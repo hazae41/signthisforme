@@ -326,7 +326,7 @@ export function Make() {
           value={rawText || ""}
           rows={100} />}
       {preview === "true" &&
-        <div className="overflow-y-scroll">
+        <div className="overflow-y-auto">
           <Markdown text={text || ""} />
         </div>}
       <div className="h-4 shrink-0 grow" />
