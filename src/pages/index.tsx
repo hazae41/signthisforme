@@ -1,5 +1,6 @@
 import { Errors } from "@/libs/errors"
 import { Outline } from "@/libs/heroicons"
+import { Markdown } from "@/libs/markdown"
 import { ShrinkableOppositeAnchor } from "@/libs/ui/anchors"
 import { ShrinkableOppositeButton } from "@/libs/ui/buttons"
 import { MediumLoading } from "@/libs/ui/loading"
@@ -107,10 +108,9 @@ export function Sign() {
     </div>
     <div className="h-4" />
     <div className="p-4 bg-contrast rounded-xl">
-      <textarea className="w-full bg-transparent outline-none"
-        readOnly
-        value={text || ""}
-        rows={10} />
+      <div className="max-h-[500px] overflow-y-auto">
+        <Markdown text={text} />
+      </div>
     </div>
     <div className="h-4" />
     <div className="flex items-center gap-2">
