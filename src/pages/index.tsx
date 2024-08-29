@@ -322,6 +322,7 @@ export function Make() {
     <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
       {preview !== "true" &&
         <textarea className="w-full bg-transparent outline-none resize-none"
+          placeholder="I will buy crypto when my favorite influencer tells me to"
           onChange={onRawTextChange}
           value={rawText || ""}
           rows={100} />}
