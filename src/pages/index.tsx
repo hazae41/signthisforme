@@ -1,13 +1,14 @@
 import { Errors } from "@/libs/errors"
+import { Outline } from "@/libs/heroicons"
 import { ShrinkableOppositeAnchor } from "@/libs/ui/anchors"
-import { ShrinkableContrastButton, ShrinkableOppositeButton } from "@/libs/ui/buttons"
+import { ShrinkableOppositeButton } from "@/libs/ui/buttons"
 import { MediumLoading } from "@/libs/ui/loading"
 import { urlOf } from "@/libs/url"
 import { Deferred, Stack } from "@hazae41/box"
-import { usePathContext, useSearchState } from "@hazae41/chemin"
+import { useCoords, usePathContext, useSearchState, useSearchSubpath } from "@hazae41/chemin"
 import { useWeb3Modal, useWeb3ModalAccount, useWeb3ModalProvider } from "@web3modal/ethers/react"
 import { BrowserProvider, ethers } from "ethers"
-import { ChangeEvent, useCallback, useDeferredValue, useEffect, useState } from "react"
+import { ChangeEvent, useCallback, useDeferredValue, useEffect, useMemo, useState } from "react"
 
 export function Router() {
   const path = usePathContext().getOrThrow()
@@ -156,24 +157,11 @@ export function Done() {
 
 export function Check() {
   const path = usePathContext().getOrThrow()
+  const share = useSearchSubpath(path, "share")
 
   const [text] = useSearchState(path, "text")
   const [address] = useSearchState(path, "address")
   const [signature] = useSearchState(path, "signature")
-
-  const [copied, setCopied] = useState(false)
-
-  const onCopyClick = useCallback(() => Errors.runAndLogAndAlert(async () => {
-    await navigator.clipboard.writeText(location.href)
-    setTimeout(() => setCopied(false), 1000)
-    setCopied(true)
-  }), [path])
-
-  const onShareClick = useCallback(() => Errors.runAndLogAndAlert(async () => {
-    const title = "Sign This For Me"
-    const text = "Check out this text I signed"
-    await navigator.share({ title, text, url: location.href })
-  }), [path])
 
   const [status, setStatus] = useState<"loading" | "valid" | "invalid">("loading")
 
@@ -196,6 +184,8 @@ export function Check() {
   useEffect(() => {
     queueMicrotask(() => setStatus(verify()))
   }, [])
+
+  const shareCoords = useCoords(share, urlOf("/open", { url: location.href }))
 
   if (!text)
     return null
@@ -255,20 +245,20 @@ export function Check() {
     </div>
     <div className="h-4" />
     <div className="flex items-center gap-2">
-      <ShrinkableOppositeButton
-        onClick={onShareClick}>
-        Share link
-      </ShrinkableOppositeButton>
-      <ShrinkableContrastButton
-        onClick={onCopyClick}>
-        {copied ? "Copied link" : "Copy link"}
-      </ShrinkableContrastButton>
+      <ShrinkableOppositeAnchor
+        onKeyDown={shareCoords.onKeyDown}
+        onClick={shareCoords.onClick}
+        href={shareCoords.href}>
+        <Outline.ShareIcon className="size-4" />
+        Share
+      </ShrinkableOppositeAnchor>
     </div>
   </div>
 }
 
 export function Make() {
   const path = usePathContext().getOrThrow()
+  const share = useSearchSubpath(path, "share")
 
   const [text, setText] = useSearchState(path, "text")
 
@@ -306,21 +296,11 @@ export function Make() {
     setRawApi(e.target.value)
   }, [])
 
-  const [copied, setCopied] = useState(false)
+  const url = useMemo(() => {
+    return path.go(urlOf("/sign", { type: "ethereum", text, api }))
+  }, [path, text, api])
 
-  const onCopyClick = useCallback(() => Errors.runAndLogAndAlert(async () => {
-    const url = path.go(urlOf("/sign", { type: "ethereum", text, api }))
-    await navigator.clipboard.writeText(url.href)
-    setTimeout(() => setCopied(false), 1000)
-    setCopied(true)
-  }), [path])
-
-  const onShareClick = useCallback(() => Errors.runAndLogAndAlert(async () => {
-    const title = "Sign This For Me"
-    const text = "Check out this text to sign"
-    const url = path.go(urlOf("/sign", { type: "ethereum", text, api }))
-    await navigator.share({ title, text, url: url.href })
-  }), [path])
+  const shareCoords = useCoords(share, urlOf("/open", { url: url.href }))
 
   return <div className="grow flex flex-col">
     <div className="h-16" />
@@ -360,14 +340,13 @@ export function Make() {
     </div>
     <div className="h-4" />
     <div className="flex items-center gap-2">
-      <ShrinkableOppositeButton
-        onClick={onShareClick}>
-        Share link
-      </ShrinkableOppositeButton>
-      <ShrinkableContrastButton
-        onClick={onCopyClick}>
-        {copied ? "Copied link" : "Copy link"}
-      </ShrinkableContrastButton>
+      <ShrinkableOppositeAnchor
+        onKeyDown={shareCoords.onKeyDown}
+        onClick={shareCoords.onClick}
+        href={shareCoords.href}>
+        <Outline.ShareIcon className="size-4" />
+        Share
+      </ShrinkableOppositeAnchor>
     </div>
   </div>
 }

@@ -3,10 +3,13 @@ import "@hazae41/symbol-dispose-polyfill";
 import "@/styles/index.css";
 
 import { Errors } from "@/libs/errors";
+import { Outline } from "@/libs/heroicons";
+import { HTMLInputEvents } from "@/libs/react/events";
 import { ChildrenProps } from "@/libs/react/props/children";
-import { ShrinkableNakedButton } from "@/libs/ui/buttons";
+import { RoundedShrinkableNakedButton, ShrinkableNakedButton, WideShrinkableContrastButton } from "@/libs/ui/buttons";
+import { Menu } from "@/libs/ui/menu";
 import { AppKit } from "@/mods/contexts/web3modal";
-import { HashPathProvider, usePathContext } from "@hazae41/chemin";
+import { HashPathProvider, SearchSubpathProvider, usePathContext, useSearchSubpath } from "@hazae41/chemin";
 import { useWeb3Modal, useWeb3ModalAccount } from "@web3modal/ethers/react";
 import type { AppProps } from "next/app";
 import { useCallback, useEffect, useState } from "react";
@@ -39,6 +42,7 @@ export default function App({ Component, pageProps }: AppProps) {
 export function Layout(props: ChildrenProps) {
   const { children } = props
   const path = usePathContext().getOrThrow()
+  const share = useSearchSubpath(path, "share")
 
   const modal = useWeb3Modal()
   const account = useWeb3ModalAccount()
@@ -48,6 +52,12 @@ export function Layout(props: ChildrenProps) {
   }), [modal])
 
   return <AppKit>
+    <SearchSubpathProvider value="share">
+      {share.url.pathname === "/open" &&
+        <Menu>
+          <ShareMenu />
+        </Menu>}
+    </SearchSubpathProvider>
     <main className="p-safe h-full w-full flex flex-col overflow-y-scroll animate-opacity-in">
       <div className="po-md flex items-center">
         <a className="font-bold text-lg"
@@ -65,4 +75,50 @@ export function Layout(props: ChildrenProps) {
       </div>
     </main>
   </AppKit>
+}
+
+export function ShareMenu() {
+  const path = usePathContext().getOrThrow()
+
+  const [copied, setCopied] = useState(false)
+
+  const url = path.url.searchParams.get("url")!
+
+  const onCopyClick = useCallback(() => Errors.runAndLog(async () => {
+    await navigator.clipboard.writeText(url)
+    setTimeout(() => setCopied(false), 300)
+    setCopied(true)
+  }), [url])
+
+  const onShareClick = useCallback(() => Errors.runAndLog(async () => {
+    const title = "Sign This For Me"
+    const text = "Check out this text to sign"
+    await navigator.share({ title, text, url })
+  }), [url])
+
+  return <>
+    <div className="p-4 flex items-center bg-contrast rounded-xl">
+      <input className="w-full bg-transparent outline-none"
+        onFocus={HTMLInputEvents.select}
+        value={url}
+        readOnly />
+      <div className="w-2" />
+      <div className="flex items-center">
+        <RoundedShrinkableNakedButton
+          onClick={onCopyClick}>
+          {!copied && <Outline.ClipboardIcon className="size-4" />}
+          {copied && <Outline.CheckIcon className="size-4" />}
+        </RoundedShrinkableNakedButton>
+      </div>
+    </div>
+    {"share" in navigator && <>
+      <div className="h-2" />
+      <WideShrinkableContrastButton
+        onClick={onShareClick}>
+        <Outline.ShareIcon className="size-4" />
+        Share
+      </WideShrinkableContrastButton>
+    </>
+    }
+  </>
 }

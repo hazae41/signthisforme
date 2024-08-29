@@ -23,3 +23,11 @@ export function AnchorShrinkerDiv(props: ChildrenProps) {
     {children}
   </div>
 }
+
+export function MenuButtonShrinkerDiv(props: ChildrenProps) {
+  const { children } = props
+
+  return <div className="h-full w-full flex justify-start items-center gap-4 group-enabled:group-active:scale-90 transition-transform">
+    {children}
+  </div>
+}
