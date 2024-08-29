@@ -1,7 +1,7 @@
 import { Errors } from "@/libs/errors"
 import { Outline } from "@/libs/heroicons"
 import { Markdown } from "@/libs/markdown"
-import { ShrinkableOppositeAnchor } from "@/libs/ui/anchors"
+import { ShrinkableOppositeAnchor, WideShrinkableContrastAnchor, WideShrinkableNakedAnchor } from "@/libs/ui/anchors"
 import { ShrinkableOppositeButton } from "@/libs/ui/buttons"
 import { MediumLoading } from "@/libs/ui/loading"
 import { urlOf } from "@/libs/url"
@@ -259,6 +259,7 @@ export function Check() {
 export function Make() {
   const path = usePathContext().getOrThrow()
   const share = useSearchSubpath(path, "share")
+  const [preview] = useSearchState(path, "preview")
 
   const [text, setText] = useSearchState(path, "text")
 
@@ -318,11 +319,41 @@ export function Make() {
       }} />
     </div>
     <div className="h-4" />
-    <div className="p-4 bg-contrast rounded-xl">
-      <textarea className="w-full bg-transparent outline-none"
-        onChange={onRawTextChange}
-        value={rawText || ""}
-        rows={10} />
+    <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
+      {preview !== "true" &&
+        <textarea className="w-full bg-transparent outline-none resize-none"
+          onChange={onRawTextChange}
+          value={rawText || ""}
+          rows={100} />}
+      {preview === "true" &&
+        <div className="overflow-y-scroll">
+          <Markdown text={text || ""} />
+        </div>}
+      <div className="h-4 shrink-0 grow" />
+      <div className="flex items-center gap-2">
+        {preview !== "true" && <>
+          <WideShrinkableContrastAnchor>
+            <Outline.PencilIcon className="size-4" />
+            Edit
+          </WideShrinkableContrastAnchor>
+          <WideShrinkableNakedAnchor
+            href={path.go(urlOf(path.url, { preview: true })).href}>
+            <Outline.EyeIcon className="size-4" />
+            Preview
+          </WideShrinkableNakedAnchor>
+        </>}
+        {preview === "true" && <>
+          <WideShrinkableNakedAnchor
+            href={path.go(urlOf(path.url, { preview: false })).href}>
+            <Outline.PencilIcon className="size-4" />
+            Edit
+          </WideShrinkableNakedAnchor>
+          <WideShrinkableContrastAnchor>
+            <Outline.EyeIcon className="size-4" />
+            Preview
+          </WideShrinkableContrastAnchor>
+        </>}
+      </div>
     </div>
     <div className="h-4" />
     <div className="">
@@ -343,7 +374,8 @@ export function Make() {
       <ShrinkableOppositeAnchor
         onKeyDown={shareCoords.onKeyDown}
         onClick={shareCoords.onClick}
-        href={shareCoords.href}>
+        href={shareCoords.href}
+        aria-disabled={!text}>
         <Outline.ShareIcon className="size-4" />
         Share
       </ShrinkableOppositeAnchor>
