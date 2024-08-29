@@ -107,9 +107,9 @@ export function Sign() {
       }} />
     </div>
     <div className="h-4" />
-    <div className="p-4 bg-contrast rounded-xl">
-      <div className="max-h-[500px] overflow-y-auto">
-        <Markdown text={text} />
+    <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
+      <div className="overflow-y-auto">
+        <Markdown text={text || ""} />
       </div>
     </div>
     <div className="h-4" />
@@ -142,11 +142,10 @@ export function Done() {
       }} />
     </div>
     <div className="h-4" />
-    <div className="p-4 bg-contrast rounded-xl">
-      <textarea className="w-full bg-transparent outline-none"
-        value={text || ""}
-        rows={10}
-        readOnly />
+    <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
+      <div className="overflow-y-auto">
+        <Markdown text={text || ""} />
+      </div>
     </div>
     <div className="h-4" />
     <div className="text-center text-contrast">
@@ -217,11 +216,10 @@ export function Check() {
       }} />
     </div>
     <div className="h-4" />
-    <div className="p-4 bg-contrast rounded-xl">
-      <textarea className="w-full bg-transparent outline-none"
-        value={text || ""}
-        rows={10}
-        readOnly />
+    <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
+      <div className="overflow-y-auto">
+        <Markdown text={text || ""} />
+      </div>
     </div>
     <div className="h-4" />
     <div className="">
