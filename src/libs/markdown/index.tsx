@@ -54,13 +54,37 @@ export const components = {
       {...props} />
   },
   ul: function UnorderedList(props: JSX.IntrinsicElements["ul"]) {
-    return <ul className="inline-block whitespace-normal list-disc" {...props} />
+    const { children } = props
+
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
+    return <ul className="inline-block list-disc" {...props}>
+      {filtered}
+    </ul>
   },
   ol: function OrderedList(props: JSX.IntrinsicElements["ol"]) {
-    return <ol className="inline-block whitespace-normal list-decimal" {...props} />
+    const { children } = props
+
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
+    return <ol className="inline-block list-decimal" {...props}>
+      {filtered}
+    </ol>
   },
   li: function ListItem(props: JSX.IntrinsicElements["li"]) {
-    return <li className="whitespace-pre-wrap ml-4" {...props} />
+    const { children } = props
+
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
+    return <li className="ml-4" {...props}>
+      {filtered}
+    </li>
   },
   p: function Paragraph(props: JSX.IntrinsicElements["p"]) {
     return <>{props.children}</>
