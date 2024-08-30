@@ -129,7 +129,7 @@ export const components = {
       : children
 
     if (className === "task-list-item")
-      return <li className="flex items-center gap-2"
+      return <li className="flex items-center gap-4"
         {...rest}>
         {filtered}
       </li>
@@ -146,10 +146,7 @@ export const components = {
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
       : children
 
-    return <p className="inline-block align-top"
-      {...rest}>
-      {filtered}
-    </p>
+    return <>{filtered}</>
   },
   pre: function Pre(props: JSX.IntrinsicElements["pre"]) {
     const { children, className, ...rest } = props
