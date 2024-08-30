@@ -1,8 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default function handle(req: NextApiRequest, res: NextApiResponse) {
-  console.log(req)
-
-  // res.status(400).send("Geoblocked")
-  res.status(200).send(undefined)
+  res.status(400).send("Bad request")
 }
