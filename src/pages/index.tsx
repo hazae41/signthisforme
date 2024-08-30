@@ -45,10 +45,6 @@ export function Sign() {
     if (!text)
       return
 
-    using stack = new Stack()
-
-    setLoading(true)
-
     if (provider.walletProvider == null) {
       await modal.open()
       return
@@ -60,6 +56,10 @@ export function Sign() {
       await modal.open()
       return
     }
+
+    using stack = new Stack()
+
+    setLoading(true)
 
     stack.push(new Deferred(() => setLoading(false)))
 
