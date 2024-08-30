@@ -385,29 +385,36 @@ export function Make() {
 export function Landing() {
   const path = usePathContext().getOrThrow()
 
-  return <div className="p-4 grow w-full m-auto max-w-4xl flex flex-col">
-    <div className="h-[max(24rem,100dvh_-_16rem)] flex-none flex flex-col items-center">
-      <div className="grow" />
-      <h1 className="text-center text-6xl font-medium">
-        The signature request protocol
-      </h1>
-      <div className="h-4" />
-      <div className="text-center text-contrast text-2xl">
-        Meet the Ethereum way of requesting an electronic signature
+  return <>
+    <div className="p-4 grow w-full m-auto max-w-4xl flex flex-col">
+      <div className="h-[max(24rem,100dvh_-_16rem)] flex-none flex flex-col items-center">
+        <div className="grow" />
+        <h1 className="text-center text-6xl font-medium">
+          The signature request protocol
+        </h1>
+        <div className="h-4" />
+        <div className="text-center text-contrast text-2xl">
+          Meet the Ethereum way of requesting an electronic signature
+        </div>
+        <div className="h-8" />
+        <div className="flex items-center">
+          <ShrinkableOppositeAnchor
+            href={path.go("/make").href}>
+            Get started
+          </ShrinkableOppositeAnchor>
+        </div>
+        <div className="grow" />
       </div>
-      <div className="h-8" />
-      <div className="flex items-center">
-        <ShrinkableOppositeAnchor
-          href={path.go("/make").href}>
-          Get started
-        </ShrinkableOppositeAnchor>
-      </div>
-      <div className="grow" />
     </div>
-    <a className="hover:underline">
-      Made by cypherpunks
-    </a>
-  </div>
+    <div className="po-md flex items-center justify-center">
+      <a className="hover:underline"
+        href="https://brume.money"
+        target="_blank"
+        rel="noreferrer">
+        Made by cypherpunks
+      </a>
+    </div>
+  </>
 }
 
 export default function Home() {
