@@ -110,6 +110,7 @@ export function Sign() {
         onClick={onAgreeClick}
         disabled={loading}>
         {loading && <MediumLoading />}
+        {!loading && <Outline.CheckIcon className="size-4" />}
         I agree
       </ShrinkableOppositeButton>
     </div>
@@ -396,6 +397,7 @@ export function Landing() {
         <div className="flex items-center">
           <ShrinkableOppositeAnchor
             href={path.go("/make").href}>
+            <Outline.SparklesIcon className="size-4" />
             Get started
           </ShrinkableOppositeAnchor>
         </div>
