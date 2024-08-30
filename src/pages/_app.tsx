@@ -97,7 +97,7 @@ export function ShareMenu() {
   }), [url])
 
   return <>
-    <div className="p-4 flex items-center bg-contrast rounded-xl">
+    <div className="po-md flex items-center bg-contrast rounded-xl">
       <input className="w-full bg-transparent outline-none"
         onFocus={HTMLInputEvents.select}
         value={url}

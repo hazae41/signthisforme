@@ -226,7 +226,7 @@ export function Check() {
       By the Ethereum address
     </div>
     <div className="h-4" />
-    <div className="p-4 bg-contrast rounded-xl">
+    <div className="po-md bg-contrast rounded-xl">
       <input className="w-full bg-transparent outline-none"
         value={address}
         readOnly />
@@ -236,7 +236,7 @@ export function Check() {
       With the signature
     </div>
     <div className="h-4" />
-    <div className="p-4 bg-contrast rounded-xl">
+    <div className="po-md bg-contrast rounded-xl">
       <input className="w-full bg-transparent outline-none"
         value={signature}
         readOnly />
@@ -362,7 +362,7 @@ export function Make() {
       You will receive the text, address, and signature as JSON
     </div>
     <div className="h-4" />
-    <div className="p-4 bg-contrast rounded-xl">
+    <div className="po-md bg-contrast rounded-xl">
       <input className="w-full bg-transparent outline-none"
         placeholder="https://example.com/api/onsignature"
         onChange={onRawApiChange}
