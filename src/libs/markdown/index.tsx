@@ -182,5 +182,69 @@ export const components = {
   },
   hr: function HorizontalRule(props: JSX.IntrinsicElements["hr"]) {
     return <div className="inline-block align-top w-full mt-2 border-t border-contrast" />
-  }
+  },
+  table: function Table(props: JSX.IntrinsicElements["table"]) {
+    const { children, ...rest } = props
+
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
+    return <table className="inline-block align-top my-2 border-collapse"
+      {...rest}>
+      {filtered}
+    </table>
+  },
+  thead: function TableHead(props: JSX.IntrinsicElements["thead"]) {
+    const { children, ...rest } = props
+
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
+    return <thead className=""
+      {...rest}>
+      {filtered}
+    </thead>
+  },
+  tbody: function TableBody(props: JSX.IntrinsicElements["tbody"]) {
+    const { children, ...rest } = props
+
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
+    return <tbody className=""
+      {...rest}>
+      {filtered}
+    </tbody>
+  },
+  tr: function TableRow(props: JSX.IntrinsicElements["tr"]) {
+    const { children, ...rest } = props
+
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
+    return <tr className=""
+      {...rest}>
+      {filtered}
+    </tr>
+  },
+  th: function TableHeader(props: JSX.IntrinsicElements["th"]) {
+    const { children, ...rest } = props
+
+    return <th className="po-md border border-contrast"
+      {...rest}>
+      {children}
+    </th>
+  },
+  td: function TableCell(props: JSX.IntrinsicElements["td"]) {
+    const { children, ...rest } = props
+
+    return <td className="po-md border border-contrast"
+      {...rest}>
+      {children}
+    </td>
+  },
 }
