@@ -129,7 +129,7 @@ export const components = {
       : children
 
     if (className === "task-list-item")
-      return <li className="flex items-center gap-4"
+      return <li className="flex items-center gap-2"
         {...rest}>
         {filtered}
       </li>
