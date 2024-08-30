@@ -12,6 +12,7 @@ import { AppKit } from "@/mods/contexts/web3modal";
 import { HashPathProvider, SearchSubpathProvider, usePathContext, useSearchSubpath } from "@hazae41/chemin";
 import { useWeb3Modal, useWeb3ModalAccount } from "@web3modal/ethers/react";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { useCallback, useEffect, useState } from "react";
 
 export function ClientOnly(props: ChildrenProps) {
@@ -30,13 +31,18 @@ export function ClientOnly(props: ChildrenProps) {
 }
 
 export default function App({ Component, pageProps }: AppProps) {
-  return <ClientOnly>
-    <HashPathProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </HashPathProvider>
-  </ClientOnly>
+  return <>
+    <Head>
+      <title>SignThisFor.Me</title>
+    </Head>
+    <ClientOnly>
+      <HashPathProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </HashPathProvider>
+    </ClientOnly>
+  </>
 }
 
 export function Layout(props: ChildrenProps) {
