@@ -79,9 +79,7 @@ export function Layout(props: ChildrenProps) {
             {account.address.slice(0, 6)}...{account.address.slice(-4)}
           </ShrinkableNakedButton>}
       </div>
-      <div className="p-4 grow w-full m-auto max-w-4xl flex flex-col">
-        {children}
-      </div>
+      {children}
     </main>
   </AppKit>
 }
