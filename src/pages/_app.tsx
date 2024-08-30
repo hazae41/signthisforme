@@ -62,7 +62,7 @@ export function Layout(props: ChildrenProps) {
       <div className="po-md flex items-center">
         <a className="font-bold text-lg"
           href={path.go("/").href}>
-          Sign This For Me
+          SignThisFor.Me
         </a>
         <div className="grow" />
         {account.address != null &&
