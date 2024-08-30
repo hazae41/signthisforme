@@ -50,14 +50,14 @@ export function Sign() {
     setLoading(true)
 
     if (provider.walletProvider == null) {
-      modal.open()
+      await modal.open()
       return
     }
 
     const { address } = account
 
     if (address == null) {
-      modal.open()
+      await modal.open()
       return
     }
 

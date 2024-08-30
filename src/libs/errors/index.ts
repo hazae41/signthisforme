@@ -17,7 +17,7 @@ export namespace Errors {
 
   export function toHumanString(error: unknown): string {
     if (error instanceof Error)
-      return `${error.name}: ${error.message}\n${toHumanString(error.cause)}`
+      return `${error.name}: ${error.message}` + (error.cause != null ? `\n${toHumanString(error.cause)}` : "")
     return toString(error)
   }
 
