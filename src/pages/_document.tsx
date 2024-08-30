@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <title>SignThisForMe</title>
+        <title>SignThisFor.Me</title>
       </Head>
       <body>
         <Main />

@@ -15,7 +15,7 @@ const mainnet = {
 
 // 3. Create a metadata object
 const metadata = {
-  name: "SignThisForMe",
+  name: "SignThisFor.Me",
   description: "Sign This For Me",
   url: "https://signthisfor.me",
   icons: []
