@@ -54,16 +54,16 @@ export const components = {
       {...props} />
   },
   ul: function UnorderedList(props: JSX.IntrinsicElements["ul"]) {
-    return <ul className="list-disc" {...props} />
+    return <ul className="inline-block whitespace-normal list-disc" {...props} />
   },
   ol: function OrderedList(props: JSX.IntrinsicElements["ol"]) {
-    return <ol className="list-decimal" {...props} />
+    return <ol className="inline-block whitespace-normal list-decimal" {...props} />
   },
   li: function ListItem(props: JSX.IntrinsicElements["li"]) {
-    return <li className="ml-4" {...props} />
+    return <li className="whitespace-pre-wrap ml-4" {...props} />
   },
   p: function Paragraph(props: JSX.IntrinsicElements["p"]) {
-    return <>{props.children}</>
+    return <p className="inline-block">{props.children}</p>
   },
   pre: function Pre(props: JSX.IntrinsicElements["pre"]) {
     return <pre className="inline-block my-2 p-4 bg-contrast rounded-xl" {...props} />
