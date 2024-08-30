@@ -38,43 +38,63 @@ export const components = {
   h1: function Header1(props: JSX.IntrinsicElements["h1"]) {
     const { children, ...rest } = props
 
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
     return <h1 className="inline-block align-top text-2xl font-medium"
       {...rest}>
-      {children}
+      {filtered}
     </h1>
   },
   h2: function Header2(props: JSX.IntrinsicElements["h2"]) {
     const { children, ...rest } = props
 
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
     return <h2 className="inline-block align-top text-xl font-medium"
       {...rest}>
-      {children}
+      {filtered}
     </h2>
   },
   h3: function Header3(props: JSX.IntrinsicElements["h3"]) {
     const { children, ...rest } = props
 
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
     return <h3 className="inline-block align-top text-lg font-medium"
       {...rest}>
-      {children}
+      {filtered}
     </h3>
   },
   h4: function Header4(props: JSX.IntrinsicElements["h4"]) {
     const { children, ...rest } = props
 
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
     return <h4 className="inline-block align-top text-base font-medium"
       {...rest}>
-      {children}
+      {filtered}
     </h4>
   },
   a: function Anchor(props: JSX.IntrinsicElements["a"]) {
     const { children, ...rest } = props
 
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
     return <a className="inline-block align-top text-blue-500 hover:underline"
       target="_blank"
       rel="noreferrer"
       {...rest}>
-      {children}
+      {filtered}
     </a>
   },
   ul: function UnorderedList(props: JSX.IntrinsicElements["ul"]) {
@@ -116,24 +136,51 @@ export const components = {
   p: function Paragraph(props: JSX.IntrinsicElements["p"]) {
     const { children } = props
 
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
     return <p className="inline-block align-top">
-      {children}
+      {filtered}
     </p>
   },
   pre: function Pre(props: JSX.IntrinsicElements["pre"]) {
     const { children, ...rest } = props
 
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
     return <pre className="inline-block align-top my-2 p-4 bg-contrast rounded-xl"
       {...rest}>
-      {children}
+      {filtered}
     </pre>
   },
   code: function Code(props: JSX.IntrinsicElements["code"]) {
     const { children, ...rest } = props
 
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
     return <code className="inline-block align-top"
       {...rest}>
-      {children}
+      {filtered}
     </code>
+  },
+  blockquote: function Blockquote(props: JSX.IntrinsicElements["blockquote"]) {
+    const { children, ...rest } = props
+
+    const filtered = Array.isArray(children)
+      ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
+      : children
+
+    return <blockquote className="inline-block align-top my-2 p-4 bg-contrast rounded-xl"
+      {...rest}>
+      {filtered}
+    </blockquote>
+  },
+  hr: function HorizontalRule(props: JSX.IntrinsicElements["hr"]) {
+    return <div className="inline-block align-top w-full mt-2 border-t border-contrast" />
   }
 }
