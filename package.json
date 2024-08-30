@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@hazae41/box": "^2.0.1",
-    "@hazae41/chemin": "^2.0.5",
+    "@hazae41/chemin": "^2.0.8",
     "@hazae41/symbol-dispose-polyfill": "^1.0.2",
     "@heroicons/react": "^2.1.5",
     "@web3modal/ethers": "^5.1.3",

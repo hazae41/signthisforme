@@ -78,7 +78,7 @@ export function Sign() {
     const response = await fetch(api, { method, headers, body })
 
     if (!response.ok)
-      throw new Error("Failed to send signature")
+      throw new Error(await response.text())
 
     location.assign(path.go(urlOf("/done", { type: "ethereum", text, address, signature }).href))
   }), [path, modal, account, provider])

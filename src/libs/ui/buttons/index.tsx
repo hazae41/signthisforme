@@ -1,8 +1,7 @@
-import { ChildrenProps } from "@/libs/react/props/children"
 import { ButtonProps } from "@/libs/react/props/html"
 import { ButtonShrinkerDiv, MenuButtonShrinkerDiv } from "../shrinkers"
 
-export function ShrinkableOppositeButton(props: ChildrenProps & ButtonProps) {
+export function ShrinkableOppositeButton(props: ButtonProps) {
   const { children, ...rest } = props
 
   return <button className="group po-md bg-opposite text-opposite rounded-xl outline-none whitespace-nowrap enabled:hover:bg-opposite-hover focus-visible:outline-opposite disabled:opacity-50 transition-opacity"
@@ -13,7 +12,7 @@ export function ShrinkableOppositeButton(props: ChildrenProps & ButtonProps) {
   </button>
 }
 
-export function WideShrinkableOppositeButton(props: ChildrenProps & ButtonProps) {
+export function WideShrinkableOppositeButton(props: ButtonProps) {
   const { children, ...rest } = props
 
   return <button className="flex-1 group po-md bg-opposite text-opposite rounded-xl outline-none whitespace-nowrap enabled:hover:bg-opposite-hover focus-visible:outline-opposite disabled:opacity-50 transition-opacity"
@@ -24,7 +23,7 @@ export function WideShrinkableOppositeButton(props: ChildrenProps & ButtonProps)
   </button>
 }
 
-export function ShrinkableContrastButton(props: ChildrenProps & ButtonProps) {
+export function ShrinkableContrastButton(props: ButtonProps) {
   const { children, ...rest } = props
 
   return <button className="group po-md bg-contrast rounded-xl outline-none whitespace-nowrap enabled:hover:bg-contrast-hover focus-visible:outline-contrast disabled:opacity-50 transition-opacity"
@@ -35,7 +34,7 @@ export function ShrinkableContrastButton(props: ChildrenProps & ButtonProps) {
   </button>
 }
 
-export function WideShrinkableContrastButton(props: ChildrenProps & ButtonProps) {
+export function WideShrinkableContrastButton(props: ButtonProps) {
   const { children, ...rest } = props
 
   return <button className="flex-1 group po-md bg-contrast rounded-xl outline-none whitespace-nowrap enabled:hover:bg-contrast-hover focus-visible:outline-contrast disabled:opacity-50 transition-opacity"
@@ -47,7 +46,7 @@ export function WideShrinkableContrastButton(props: ChildrenProps & ButtonProps)
 }
 
 
-export function ShrinkableNakedButton(props: ChildrenProps & ButtonProps) {
+export function ShrinkableNakedButton(props: ButtonProps) {
   const { children, ...rest } = props
 
   return <button className="group po-md rounded-xl outline-none whitespace-nowrap enabled:hover:bg-contrast focus-visible:bg-contrast disabled:opacity-50 transition-opacity"
@@ -58,7 +57,7 @@ export function ShrinkableNakedButton(props: ChildrenProps & ButtonProps) {
   </button>
 }
 
-export function WideShrinkableNakedMenuButton(props: ChildrenProps & ButtonProps) {
+export function WideShrinkableNakedMenuButton(props: ButtonProps) {
   const { children, ...rest } = props
 
   return <button className="flex-1 group po-md rounded-xl outline-none whitespace-nowrap enabled:hover:bg-contrast focus-visible:bg-contrast disabled:opacity-50 transition-opacity"
@@ -69,7 +68,7 @@ export function WideShrinkableNakedMenuButton(props: ChildrenProps & ButtonProps
   </button>
 }
 
-export function RoundedShrinkableNakedButton(props: ChildrenProps & ButtonProps) {
+export function RoundedShrinkableNakedButton(props: ButtonProps) {
   const { children, ...rest } = props
 
   return <button className="p-1 group rounded-full outline-none whitespace-nowrap enabled:hover:bg-contrast focus-visible:bg-contrast disabled:opacity-50 transition-opacity"

@@ -6,8 +6,6 @@ export class UIError extends Error {
 export namespace Errors {
 
   export function toJSON(error: unknown): unknown {
-    if (Array.isArray(error))
-      return error.map(toJSON)
     if (error instanceof Error)
       return { name: error.name, message: error.message, cause: toJSON(error.cause) }
     return error
@@ -16,14 +14,23 @@ export namespace Errors {
   export function toString(error: unknown) {
     return JSON.stringify(toJSON(error))
   }
+
+  export function toHumanString(error: unknown): string {
+    if (error instanceof Error)
+      return `${error.name}: ${error.message}\n${toHumanString(error.cause)}`
+    return toString(error)
+  }
+
   export function log(error: unknown) {
     console.error({ error })
   }
 
   export function alert(error: unknown) {
+    const { alert } = globalThis
+
     if (error instanceof UIError)
-      return globalThis.alert(error.message)
-    return globalThis.alert(toString(error))
+      return alert(error.message)
+    return alert(toHumanString(error))
   }
 
   export function logAndAlert(error: unknown) {
