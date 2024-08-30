@@ -66,11 +66,14 @@ export function Layout(props: ChildrenProps) {
     </SearchSubpathProvider>
     <main className="p-safe h-full w-full flex flex-col overflow-y-scroll animate-opacity-in">
       <div className="po-md flex items-center">
+        <img className="size-5"
+          src="/favicon.png" />
+        <div className="w-2" />
         <a className="font-bold text-lg"
           href={path.go("/").href}>
           SignThisFor.Me
         </a>
-        <div className="grow" />
+        <div className="w-2 grow" />
         {account.address != null &&
           <ShrinkableNakedButton onClick={onAccountClick}>
             {account.address.slice(0, 6)}...{account.address.slice(-4)}
