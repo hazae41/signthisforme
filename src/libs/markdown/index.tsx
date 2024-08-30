@@ -17,7 +17,7 @@ export function Markdown(props: { readonly text: string }) {
       .use(remarkGfm)
       .use(remarkRehype)
       .use(rehypeReact, { ...jsx, components } as any)
-      .process(text.replaceAll("\n\n", "\n&nbsp;  \n"))
+      .process(text.replaceAll("\n", "&nbsp;  \n"))
 
     setElement(file.result)
   }, [text])
