@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import * as jsx from "react/jsx-runtime"
 import rehypeReact from "rehype-react"
-import remarkBreaks from "remark-breaks"
 import remarkGfm from "remark-gfm"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
@@ -15,11 +14,10 @@ export function Markdown(props: { readonly text: string }) {
   const parseOrThrow = useCallback(async () => {
     const file = await unified()
       .use(remarkParse)
-      .use(remarkBreaks)
       .use(remarkGfm)
       .use(remarkRehype)
       .use(rehypeReact, { ...jsx, components } as any)
-      .process(text)
+      .process(text.replaceAll("\n", "\n&nbsp;  \n"))
 
     setElement(file.result)
   }, [text])
