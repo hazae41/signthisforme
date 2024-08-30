@@ -59,6 +59,5 @@ export const components = {
   },
   li: function ListItem(props: JSX.IntrinsicElements["li"]) {
     return <li className="ml-4" {...props} />
-  },
-
+  }
 }
