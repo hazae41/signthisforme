@@ -36,16 +36,16 @@ export function Markdown(props: { readonly text: string }) {
 
 export const components = {
   h1: function Header1(props: JSX.IntrinsicElements["h1"]) {
-    return <h1 className="text-2xl font-medium" {...props} />
+    return <h1 className="inline-block text-2xl font-medium" {...props} />
   },
   h2: function Header2(props: JSX.IntrinsicElements["h2"]) {
-    return <h2 className="text-xl font-medium" {...props} />
+    return <h2 className="inline-block text-xl font-medium" {...props} />
   },
   h3: function Header3(props: JSX.IntrinsicElements["h3"]) {
-    return <h3 className="text-lg font-medium" {...props} />
+    return <h3 className="inline-block text-lg font-medium" {...props} />
   },
   h4: function Header4(props: JSX.IntrinsicElements["h4"]) {
-    return <h4 className="text-base font-medium" {...props} />
+    return <h4 className="inline-block text-base font-medium" {...props} />
   },
   a: function Anchor(props: JSX.IntrinsicElements["a"]) {
     return <a className="text-blue-500 hover:underline"
@@ -66,7 +66,7 @@ export const components = {
     return <>{props.children}</>
   },
   pre: function Pre(props: JSX.IntrinsicElements["pre"]) {
-    return <pre className="p-4 bg-contrast rounded-xl" {...props} />
+    return <pre className="inline-block my-2 p-4 bg-contrast rounded-xl" {...props} />
   },
   code: function Code(props: JSX.IntrinsicElements["code"]) {
     return <code {...props} />
