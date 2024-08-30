@@ -321,7 +321,7 @@ export function Make() {
           value={rawText || ""}
           rows={100} />}
       {preview === "true" &&
-        <div className="overflow-y-auto">
+        <div className="whitespace-pre-wrap overflow-y-auto">
           <Markdown text={text || ""} />
         </div>}
       <div className="h-4 shrink-0 grow" />
