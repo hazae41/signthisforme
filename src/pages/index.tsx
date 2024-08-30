@@ -87,34 +87,33 @@ export function Sign() {
     return null
 
   return <div className="p-4 grow w-full m-auto max-w-4xl flex flex-col">
-    <div className="grow flex flex-col">
-      <div className="h-16" />
-      <div className="flex flex-col items-center">
-        <h1 className="text-2xl font-bold">
-          You are signing this text
-        </h1>
-        <div className="h-4" />
-        <div className="size-12 bg-black dark:bg-white border-2 border-solid" style={{
-          mask: `url(/assets/arrow.png) no-repeat center / contain`,
-          WebkitMask: `url(/assets/arrow.png) no-repeat center / contain`
-        }} />
-      </div>
+    <div className="h-16" />
+    <div className="flex flex-col items-center">
+      <h1 className="text-2xl font-bold">
+        You are signing this text
+      </h1>
       <div className="h-4" />
-      <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
-        <div className="overflow-y-auto">
-          <Markdown text={text || ""} />
-        </div>
-      </div>
-      <div className="h-4" />
-      <div className="flex items-center gap-2">
-        <ShrinkableOppositeButton
-          onClick={onAgreeClick}
-          disabled={loading}>
-          {loading && <MediumLoading />}
-          I agree
-        </ShrinkableOppositeButton>
+      <div className="size-12 bg-black dark:bg-white border-2 border-solid" style={{
+        mask: `url(/assets/arrow.png) no-repeat center / contain`,
+        WebkitMask: `url(/assets/arrow.png) no-repeat center / contain`
+      }} />
+    </div>
+    <div className="h-4" />
+    <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
+      <div className="overflow-y-auto">
+        <Markdown text={text || ""} />
       </div>
     </div>
+    <div className="h-4" />
+    <div className="flex items-center gap-2">
+      <ShrinkableOppositeButton
+        onClick={onAgreeClick}
+        disabled={loading}>
+        {loading && <MediumLoading />}
+        I agree
+      </ShrinkableOppositeButton>
+    </div>
+    <div className="h-16" />
   </div>
 }
 
@@ -124,29 +123,28 @@ export function Done() {
   const [text] = useSearchState(path, "text")
 
   return <div className="p-4 grow w-full m-auto max-w-4xl flex flex-col">
-    <div className="grow flex flex-col">
-      <div className="h-16" />
-      <div className="flex flex-col items-center">
-        <h1 className="text-2xl font-bold">
-          You have signed this text
-        </h1>
-        <div className="h-4" />
-        <div className="size-12 bg-black dark:bg-white border-2 border-solid" style={{
-          mask: `url(/assets/arrow.png) no-repeat center / contain`,
-          WebkitMask: `url(/assets/arrow.png) no-repeat center / contain`
-        }} />
-      </div>
+    <div className="h-16" />
+    <div className="flex flex-col items-center">
+      <h1 className="text-2xl font-bold">
+        You have signed this text
+      </h1>
       <div className="h-4" />
-      <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
-        <div className="overflow-y-auto">
-          <Markdown text={text || ""} />
-        </div>
-      </div>
-      <div className="h-4" />
-      <div className="text-center text-contrast">
-        (You can now close this page)
+      <div className="size-12 bg-black dark:bg-white border-2 border-solid" style={{
+        mask: `url(/assets/arrow.png) no-repeat center / contain`,
+        WebkitMask: `url(/assets/arrow.png) no-repeat center / contain`
+      }} />
+    </div>
+    <div className="h-4" />
+    <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
+      <div className="overflow-y-auto">
+        <Markdown text={text || ""} />
       </div>
     </div>
+    <div className="h-4" />
+    <div className="text-center text-contrast">
+      (You can now close this page)
+    </div>
+    <div className="h-16" />
   </div>
 }
 
@@ -200,55 +198,54 @@ export function Check() {
     </div>
 
   return <div className="p-4 grow w-full m-auto max-w-4xl flex flex-col">
-    <div className="grow flex flex-col">
-      <div className="h-16" />
-      <div className="flex flex-col items-center">
-        <h1 className="text-2xl font-bold">
-          This text has been signed
-        </h1>
-        <div className="h-4" />
-        <div className="size-12 bg-black dark:bg-white border-2 border-solid" style={{
-          mask: `url(/assets/arrow.png) no-repeat center / contain`,
-          WebkitMask: `url(/assets/arrow.png) no-repeat center / contain`
-        }} />
-      </div>
+    <div className="h-16" />
+    <div className="flex flex-col items-center">
+      <h1 className="text-2xl font-bold">
+        This text has been signed
+      </h1>
       <div className="h-4" />
-      <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
-        <div className="overflow-y-auto">
-          <Markdown text={text || ""} />
-        </div>
-      </div>
-      <div className="h-4" />
-      <div className="">
-        By the Ethereum address
-      </div>
-      <div className="h-4" />
-      <div className="po-md bg-contrast rounded-xl">
-        <input className="w-full bg-transparent outline-none"
-          value={address}
-          readOnly />
-      </div>
-      <div className="h-4" />
-      <div className="">
-        With the signature
-      </div>
-      <div className="h-4" />
-      <div className="po-md bg-contrast rounded-xl">
-        <input className="w-full bg-transparent outline-none"
-          value={signature}
-          readOnly />
-      </div>
-      <div className="h-4" />
-      <div className="flex items-center gap-2">
-        <ShrinkableOppositeAnchor
-          onKeyDown={shareCoords.onKeyDown}
-          onClick={shareCoords.onClick}
-          href={shareCoords.href}>
-          <Outline.ShareIcon className="size-4" />
-          Share
-        </ShrinkableOppositeAnchor>
+      <div className="size-12 bg-black dark:bg-white border-2 border-solid" style={{
+        mask: `url(/assets/arrow.png) no-repeat center / contain`,
+        WebkitMask: `url(/assets/arrow.png) no-repeat center / contain`
+      }} />
+    </div>
+    <div className="h-4" />
+    <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
+      <div className="overflow-y-auto">
+        <Markdown text={text || ""} />
       </div>
     </div>
+    <div className="h-4" />
+    <div className="">
+      By the Ethereum address
+    </div>
+    <div className="h-4" />
+    <div className="po-md bg-contrast rounded-xl">
+      <input className="w-full bg-transparent outline-none"
+        value={address}
+        readOnly />
+    </div>
+    <div className="h-4" />
+    <div className="">
+      With the signature
+    </div>
+    <div className="h-4" />
+    <div className="po-md bg-contrast rounded-xl">
+      <input className="w-full bg-transparent outline-none"
+        value={signature}
+        readOnly />
+    </div>
+    <div className="h-4" />
+    <div className="flex items-center gap-2">
+      <ShrinkableOppositeAnchor
+        onKeyDown={shareCoords.onKeyDown}
+        onClick={shareCoords.onClick}
+        href={shareCoords.href}>
+        <Outline.ShareIcon className="size-4" />
+        Share
+      </ShrinkableOppositeAnchor>
+    </div>
+    <div className="h-16" />
   </div>
 }
 
@@ -300,85 +297,84 @@ export function Make() {
   const shareCoords = useCoords(share, urlOf("/open", { url: url.href }))
 
   return <div className="p-4 grow w-full m-auto max-w-4xl flex flex-col">
-    <div className="grow flex flex-col">
-      <div className="h-16" />
-      <div className="flex flex-col items-center">
-        <h1 className="text-2xl font-bold">
-          Enter some text to sign
-        </h1>
-        <div className="text-xl text-contrast font-medium">
-          Yes, you can include links
-        </div>
-        <div className="h-4" />
-        <div className="size-12 bg-black dark:bg-white border-2 border-solid" style={{
-          mask: `url(/assets/arrow.png) no-repeat center / contain`,
-          WebkitMask: `url(/assets/arrow.png) no-repeat center / contain`
-        }} />
+    <div className="h-16" />
+    <div className="flex flex-col items-center">
+      <h1 className="text-2xl font-bold">
+        Enter some text to sign
+      </h1>
+      <div className="text-xl text-contrast font-medium">
+        Yes, you can include links
       </div>
       <div className="h-4" />
-      <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
-        {preview !== "true" &&
-          <textarea className="w-full bg-transparent outline-none resize-none"
-            placeholder="I will buy crypto when my favorite influencer tells me to"
-            onChange={onRawTextChange}
-            value={rawText || ""}
-            rows={100} />}
-        {preview === "true" &&
-          <div className="overflow-y-auto">
-            <Markdown text={text || ""} />
-          </div>}
-        <div className="h-4 shrink-0 grow" />
-        <div className="flex items-center gap-2">
-          {preview !== "true" && <>
-            <WideShrinkableContrastAnchor>
-              <Outline.PencilIcon className="size-4" />
-              Edit
-            </WideShrinkableContrastAnchor>
-            <WideShrinkableNakedAnchor
-              href={path.go(urlOf(path.url, { preview: true })).href}>
-              <Outline.EyeIcon className="size-4" />
-              Preview
-            </WideShrinkableNakedAnchor>
-          </>}
-          {preview === "true" && <>
-            <WideShrinkableNakedAnchor
-              href={path.go(urlOf(path.url, { preview: false })).href}>
-              <Outline.PencilIcon className="size-4" />
-              Edit
-            </WideShrinkableNakedAnchor>
-            <WideShrinkableContrastAnchor>
-              <Outline.EyeIcon className="size-4" />
-              Preview
-            </WideShrinkableContrastAnchor>
-          </>}
-        </div>
-      </div>
-      <div className="h-4" />
-      <div className="">
-        <span className="text-contrast">Optional: </span> Enter a webhook target to receive the signature
-      </div>
-      <div className="text-contrast">
-        You will receive the text, address, and signature as JSON
-      </div>
-      <div className="h-4" />
-      <div className="po-md bg-contrast rounded-xl">
-        <input className="w-full bg-transparent outline-none"
-          placeholder="https://example.com/api/onsignature"
-          onChange={onRawApiChange}
-          value={rawApi || ""} />
-      </div>
-      <div className="h-4" />
+      <div className="size-12 bg-black dark:bg-white border-2 border-solid" style={{
+        mask: `url(/assets/arrow.png) no-repeat center / contain`,
+        WebkitMask: `url(/assets/arrow.png) no-repeat center / contain`
+      }} />
+    </div>
+    <div className="h-4" />
+    <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
+      {preview !== "true" &&
+        <textarea className="w-full bg-transparent outline-none resize-none"
+          placeholder="I will buy crypto when my favorite influencer tells me to"
+          onChange={onRawTextChange}
+          value={rawText || ""}
+          rows={100} />}
+      {preview === "true" &&
+        <div className="overflow-y-auto">
+          <Markdown text={text || ""} />
+        </div>}
+      <div className="h-4 shrink-0 grow" />
       <div className="flex items-center gap-2">
-        <ShrinkableOppositeAnchor
-          onKeyDown={shareCoords.onKeyDown}
-          onClick={shareCoords.onClick}
-          href={shareCoords.href}
-          aria-disabled={!text}>
-          <Outline.ShareIcon className="size-4" />
-          Share
-        </ShrinkableOppositeAnchor>
+        {preview !== "true" && <>
+          <WideShrinkableContrastAnchor>
+            <Outline.PencilIcon className="size-4" />
+            Edit
+          </WideShrinkableContrastAnchor>
+          <WideShrinkableNakedAnchor
+            href={path.go(urlOf(path.url, { preview: true })).href}>
+            <Outline.EyeIcon className="size-4" />
+            Preview
+          </WideShrinkableNakedAnchor>
+        </>}
+        {preview === "true" && <>
+          <WideShrinkableNakedAnchor
+            href={path.go(urlOf(path.url, { preview: false })).href}>
+            <Outline.PencilIcon className="size-4" />
+            Edit
+          </WideShrinkableNakedAnchor>
+          <WideShrinkableContrastAnchor>
+            <Outline.EyeIcon className="size-4" />
+            Preview
+          </WideShrinkableContrastAnchor>
+        </>}
       </div>
     </div>
+    <div className="h-4" />
+    <div className="">
+      <span className="text-contrast">Optional: </span> Enter a webhook target to receive the signature
+    </div>
+    <div className="text-contrast">
+      You will receive the text, address, and signature as JSON
+    </div>
+    <div className="h-4" />
+    <div className="po-md bg-contrast rounded-xl">
+      <input className="w-full bg-transparent outline-none"
+        placeholder="https://example.com/api/onsignature"
+        onChange={onRawApiChange}
+        value={rawApi || ""} />
+    </div>
+    <div className="h-4" />
+    <div className="flex items-center gap-2">
+      <ShrinkableOppositeAnchor
+        onKeyDown={shareCoords.onKeyDown}
+        onClick={shareCoords.onClick}
+        href={shareCoords.href}
+        aria-disabled={!text}>
+        <Outline.ShareIcon className="size-4" />
+        Share
+      </ShrinkableOppositeAnchor>
+    </div>
+    <div className="h-16" />
   </div>
 }
 
