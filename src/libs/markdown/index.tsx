@@ -5,6 +5,7 @@ import remarkGfm from "remark-gfm"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
 import { unified } from "unified"
+import { remarkNewlines } from "./newlines"
 
 export function Markdown(props: { readonly text: string }) {
   const { text } = props
@@ -14,7 +15,7 @@ export function Markdown(props: { readonly text: string }) {
   const parseOrThrow = useCallback(async () => {
     const file = await unified()
       .use(remarkParse)
-      .use(sequentialNewlinesPlugin)
+      .use(remarkNewlines)
       .use(remarkGfm)
       .use(remarkRehype)
       .use(rehypeReact, { ...jsx, components } as any)
@@ -70,45 +71,4 @@ export const components = {
   code: function Code(props: JSX.IntrinsicElements["code"]) {
     return <code {...props} />
   }
-}
-
-function enterLineEndingBlank(this: any, token: any) {
-  this.enter(
-    {
-      // LMAO
-      type: "nonCompliantlineEndingBlank",
-      value: "",
-      data: {},
-      children: []
-    },
-    token
-  );
-}
-
-function exitLineEndingBlank(this: any, token: any) {
-  this.exit(token);
-}
-
-/**
- * MDAST utility for processing the lineEndingBlank token from micromark.
- */
-export const sequentialNewlinesFromMarkdown = {
-  enter: {
-    lineEndingBlank: enterLineEndingBlank
-  },
-  exit: {
-    lineEndingBlank: exitLineEndingBlank
-  }
-};
-
-function sequentialNewlinesPlugin(this: any) {
-  const data = this.data();
-
-  function add(field: any, value: any) {
-    const list = data[field] ? data[field] : (data[field] = []);
-
-    list.push(value);
-  }
-
-  add("fromMarkdownExtensions", sequentialNewlinesFromMarkdown);
 }
