@@ -83,14 +83,6 @@ export function Sign() {
     location.assign(path.go(urlOf("/done", { type: "ethereum", text, address, signature }).href))
   }), [path, modal, account, provider])
 
-  useEffect(() => {
-    if (account.address == null)
-      return
-    if (!loading)
-      return
-    onAgreeClick()
-  }, [account.address])
-
   if (!text)
     return null
 
