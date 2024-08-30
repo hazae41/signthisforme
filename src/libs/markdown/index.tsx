@@ -50,5 +50,15 @@ export const components = {
       target="_blank"
       rel="noreferrer"
       {...props} />
-  }
+  },
+  ul: function UnorderedList(props: JSX.IntrinsicElements["ul"]) {
+    return <ul className="list-disc" {...props} />
+  },
+  ol: function OrderedList(props: JSX.IntrinsicElements["ol"]) {
+    return <ol className="list-decimal" {...props} />
+  },
+  li: function ListItem(props: JSX.IntrinsicElements["li"]) {
+    return <li className="ml-4" {...props} />
+  },
+
 }
