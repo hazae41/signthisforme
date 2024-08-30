@@ -66,7 +66,7 @@ export const components = {
     return <>{props.children}</>
   },
   pre: function Pre(props: JSX.IntrinsicElements["pre"]) {
-    return <pre className="po-md bg-contrast rounded-xl" {...props} />
+    return <pre className="p-4 bg-contrast rounded-xl" {...props} />
   },
   code: function Code(props: JSX.IntrinsicElements["code"]) {
     return <code {...props} />
