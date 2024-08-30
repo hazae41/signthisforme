@@ -63,7 +63,7 @@ export const components = {
     return <li className="whitespace-pre-wrap ml-4" {...props} />
   },
   p: function Paragraph(props: JSX.IntrinsicElements["p"]) {
-    return <p className="inline-block">{props.children}</p>
+    return <>{props.children}</>
   },
   pre: function Pre(props: JSX.IntrinsicElements["pre"]) {
     return <pre className="inline-block my-2 p-4 bg-contrast rounded-xl" {...props} />
