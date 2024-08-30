@@ -36,7 +36,7 @@ export function Markdown(props: { readonly text: string }) {
 
 export const components = {
   h1: function Header1(props: JSX.IntrinsicElements["h1"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -48,7 +48,7 @@ export const components = {
     </h1>
   },
   h2: function Header2(props: JSX.IntrinsicElements["h2"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -60,7 +60,7 @@ export const components = {
     </h2>
   },
   h3: function Header3(props: JSX.IntrinsicElements["h3"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -72,7 +72,7 @@ export const components = {
     </h3>
   },
   h4: function Header4(props: JSX.IntrinsicElements["h4"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -84,7 +84,7 @@ export const components = {
     </h4>
   },
   a: function Anchor(props: JSX.IntrinsicElements["a"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -98,7 +98,7 @@ export const components = {
     </a>
   },
   ul: function UnorderedList(props: JSX.IntrinsicElements["ul"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -110,7 +110,7 @@ export const components = {
     </ul>
   },
   ol: function OrderedList(props: JSX.IntrinsicElements["ol"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -122,11 +122,17 @@ export const components = {
     </ol>
   },
   li: function ListItem(props: JSX.IntrinsicElements["li"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
       : children
+
+    if (className === "task-list-item")
+      return <li className="flex items-center gap-2"
+        {...rest}>
+        {filtered}
+      </li>
 
     return <li className="ml-5"
       {...rest}>
@@ -134,18 +140,19 @@ export const components = {
     </li>
   },
   p: function Paragraph(props: JSX.IntrinsicElements["p"]) {
-    const { children } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
       : children
 
-    return <p className="inline-block align-top">
+    return <p className="inline-block align-top"
+      {...rest}>
       {filtered}
     </p>
   },
   pre: function Pre(props: JSX.IntrinsicElements["pre"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -157,7 +164,7 @@ export const components = {
     </pre>
   },
   code: function Code(props: JSX.IntrinsicElements["code"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -169,7 +176,7 @@ export const components = {
     </code>
   },
   blockquote: function Blockquote(props: JSX.IntrinsicElements["blockquote"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -180,11 +187,8 @@ export const components = {
       {filtered}
     </blockquote>
   },
-  hr: function HorizontalRule(props: JSX.IntrinsicElements["hr"]) {
-    return <div className="inline-block align-top w-full mt-2 border-t border-contrast" />
-  },
   table: function Table(props: JSX.IntrinsicElements["table"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -196,7 +200,7 @@ export const components = {
     </table>
   },
   thead: function TableHead(props: JSX.IntrinsicElements["thead"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -208,7 +212,7 @@ export const components = {
     </thead>
   },
   tbody: function TableBody(props: JSX.IntrinsicElements["tbody"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -220,7 +224,7 @@ export const components = {
     </tbody>
   },
   tr: function TableRow(props: JSX.IntrinsicElements["tr"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     const filtered = Array.isArray(children)
       ? children.reduce((a, _, i) => (children[i] === "\n" && children[i - 1] !== "") ? a : [...a, children[i]], [])
@@ -232,7 +236,7 @@ export const components = {
     </tr>
   },
   th: function TableHeader(props: JSX.IntrinsicElements["th"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     return <th className="po-md border border-contrast"
       {...rest}>
@@ -240,11 +244,14 @@ export const components = {
     </th>
   },
   td: function TableCell(props: JSX.IntrinsicElements["td"]) {
-    const { children, ...rest } = props
+    const { children, className, ...rest } = props
 
     return <td className="po-md border border-contrast"
       {...rest}>
       {children}
     </td>
   },
+  hr: function HorizontalRule(props: JSX.IntrinsicElements["hr"]) {
+    return <div className="inline-block align-top w-full mt-2 border-t border-contrast" />
+  }
 }
