@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return <>
     <Head>
       <title>SignThisFor.Me</title>
-      <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover" />
+      <meta key="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, viewport-fit=cover" />
       <meta key="application-name" name="application-name" content="SignThisFor.Me" />
       <meta key="description" name="description" content="Sign This For Me" />
       <meta key="color-scheme" name="color-scheme" content="dark light" />
@@ -47,6 +47,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <link rel="shortcut icon" href="/favicon.png" />
       <link rel="apple-touch-icon" href="/favicon.png" />
       <link rel="manifest" href="/manifest.json" />
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://verify.walletconnect.org" />
+      <link rel="preconnect" href="https://api.web3modal.org" />
     </Head>
     <ClientOnly>
       <HashPathProvider>
@@ -80,6 +83,7 @@ export function Layout(props: ChildrenProps) {
     <main className="p-safe h-full w-full flex flex-col overflow-y-scroll animate-opacity-in">
       <div className="po-md flex items-center">
         <img className="size-5"
+          alt="SignThisFor.Me"
           src="/favicon.png" />
         <div className="w-2" />
         <a className="font-bold text-lg"

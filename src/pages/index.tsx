@@ -81,7 +81,7 @@ export function Sign() {
       throw new Error(await response.text())
 
     location.assign(path.go(urlOf("/done", { type: "ethereum", text, address, signature }).href))
-  }), [path, modal, account, provider])
+  }), [path, modal, account, provider, text, api])
 
   if (!text)
     return null
@@ -173,11 +173,11 @@ export function Check() {
       return "invalid"
 
     return "valid"
-  }, [])
+  }, [text, address, signature])
 
   useEffect(() => {
     queueMicrotask(() => setStatus(verify()))
-  }, [])
+  }, [verify])
 
   const shareCoords = useCoords(share, urlOf("/open", { url: location.href }))
 
@@ -263,7 +263,7 @@ export function Make() {
 
   useEffect(() => {
     setText(defText)
-  }, [defText])
+  }, [setText, defText])
 
   useEffect(() => {
     setRawText(text)
@@ -281,7 +281,7 @@ export function Make() {
 
   useEffect(() => {
     setApi(defApi)
-  }, [defApi])
+  }, [setApi, defApi])
 
   useEffect(() => {
     setRawApi(api)
