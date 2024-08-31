@@ -1,0 +1,33 @@
+{
+	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/web-manifest.json",
+  "id": "66446bbe-b67f-4ef6-b42b-4dc0ba2ee66c",
+	"name": "SignThisFor.Me",
+  "version": "1.0.0",
+	"short_name": "SignThisFor.Me",
+	"description": "Sign This For Me",
+	"start_url": "/",
+	"display": "standalone",
+	"theme_color": "#ffffff",
+	"background_color": "#ffffff",
+	"lang": "en",
+  "dir": "ltr",
+	"orientation": "any",
+	"categories": [
+    "finance",
+		"social",
+		"entertainment"
+	],
+  "launch_handler": {
+    "client_mode": "auto"
+  },
+	"icons": [
+		{
+			"src": "/favicon.png",
+			"sizes": "160x160",
+			"type": "image/png",
+      "purpose": "any"
+		}
+	],
+	"shortcuts": [],
+  "screenshots" : []
+}
