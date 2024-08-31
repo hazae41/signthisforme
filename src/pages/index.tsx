@@ -100,7 +100,7 @@ export function Sign() {
     </div>
     <div className="h-4" />
     <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
-      <div className="overflow-y-auto">
+      <div className="whitespace-pre-wrap overflow-y-auto">
         <Markdown text={text || ""} />
       </div>
     </div>
@@ -137,7 +137,7 @@ export function Done() {
     </div>
     <div className="h-4" />
     <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
-      <div className="overflow-y-auto">
+      <div className="whitespace-pre-wrap overflow-y-auto">
         <Markdown text={text || ""} />
       </div>
     </div>
@@ -212,7 +212,7 @@ export function Check() {
     </div>
     <div className="h-4" />
     <div className="p-4 bg-contrast rounded-xl h-[500px] flex flex-col">
-      <div className="overflow-y-auto">
+      <div className="whitespace-pre-wrap overflow-y-auto">
         <Markdown text={text || ""} />
       </div>
     </div>
